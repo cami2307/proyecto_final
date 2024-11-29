@@ -1,0 +1,20 @@
+Sistema web de citas médicas
+Incluye:
+✅Login con roles
+✅Registro de Citas
+✅Registro de Pacientes
+✅Registro de Médicos
+✅Registro de áreas médicas
+✅Consulta de citas
+LA BASE DE DATOS SE LLAMA proyecto_final.sql
+----ADMINISTRADOR-----
+USUARIO camila alape
+CONTRASEÑA 0712
+
+USUARIO rene granados
+CONTRASEÑA 0101
+---------------------
+
+------PACIENTES-----
+USUARIO samuel perea
+CONTRASEÑA 1207
