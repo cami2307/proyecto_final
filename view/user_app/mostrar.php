@@ -120,7 +120,7 @@ $id=$_SESSION['id'];
 											<div class="avatar-lg"><img src="../../assets/img/mujer.png" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4><?php echo ucfirst($_SESSION['nombre']); ?></h4>
-												<p class="text-muted">Customers</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+												<p class="text-muted">paciente</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
 											</div>
 										</div>
 									</li>
@@ -152,7 +152,7 @@ $id=$_SESSION['id'];
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									<?php echo ucfirst($_SESSION['nombre']); ?>
-									<span class="user-level">Customers</span>
+									<span class="user-level">Pacientes</span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -219,134 +219,87 @@ $id=$_SESSION['id'];
 		<!-- End Sidebar -->
 
 		<div class="main-panel">
-			<div class="content">
-				<div class="page-inner">
-					<div class="page-header">
-						<h4 class="page-title">Citas</h4>
-						<ul class="breadcrumbs">
-							<li class="nav-home">
-								<a href="../view/admin/admin.php">
-									<i class="flaticon-home"></i>
-								</a>
-							</li>
-							<li class="separator">
-								<i class="flaticon-right-arrow"></i>
-							</li>
-							
-							
-							<li class="nav-item">
-								<a href="#">Mostrar</a>
-							</li>
-						</ul>
-					</div>
-					<div class="row">
-						
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Mis citas</h4>
-								</div>
-								<div class="card-body">
-<div class="table-responsive">
-										<table id="add-row" class="display table table-striped table-hover" >
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>DNI</th>
-													<th>Paciente</th>
-													<th>Fecha</th>
-													<th>Hora</th>
-													<th>Médico</th>
-													<th>Área Médica</th>
-													<th style="width: 10%">Estado</th>
-												</tr>
-											</thead>
-											
-										<tbody>
-											<?php
+            <div class="content">
+                <div class="page-inner">
+                    <div class="page-header">
+                        <h4 class="page-title">Citas</h4>
+                    </div>
+					<div class="main-panel">
+            <div class="content">
+                <div class="page-inner">
+                    <div class="page-header">
+                        <h4 class="page-title">Mis Citas</h4>
+                    </div>
+                    <div class="container mt-4">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10">
+                                <div class="card shadow-lg">
+                                    <div class="card-header bg-primary text-white">
+                                        <h4 class="card-title mb-0">Listado de Citas</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>DNI</th>
+                                                        <th>Paciente</th>
+                                                        <th>Fecha</th>
+                                                        <th>Hora</th>
+                                                        <th>Médico</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Estado</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    // Conexión a la base de datos
+                                                    include "../config/conex.php";
 
-if (isset($_SESSION['id'])) {
-	
-	include "../config/conex.php";
+                                                    $sql = "SELECT appointment.codcit, appointment.dates, appointment.hour, 
+                                                                    customers.dnipa, customers.nombrep, customers.apellidop, 
+                                                                    doctor.nomdoc, specialty.nombrees, appointment.estado 
+                                                            FROM appointment
+                                                            INNER JOIN customers ON appointment.codpaci = customers.codpaci
+                                                            INNER JOIN doctor ON appointment.coddoc = doctor.coddoc
+                                                            INNER JOIN specialty ON appointment.codespe = specialty.codespe
+                                                            WHERE customers.codpaci = '$id'
+                                                            ORDER BY appointment.estado DESC, appointment.dates ASC, appointment.hour ASC";
 
-	$sql = "SELECT appointment.codcit, appointment.dates, appointment.hour, customers.codpaci, 
-						customers.dnipa, customers.nombrep, customers.apellidop, doctor.coddoc, doctor.dnidoc, doctor.nomdoc, 
-						doctor.apedoc, specialty.codespe, specialty.nombrees, appointment.estado FROM appointment INNER JOIN customers ON 
-						appointment.codpaci=customers.codpaci INNER JOIN doctor ON appointment.coddoc=doctor.coddoc INNER JOIN specialty ON 
-						appointment.codespe=specialty.codespe WHERE customers.codpaci='$id'";
+                                                    $query = mysqli_query($conex, $sql);
 
-	$query = mysqli_query($conex, $sql);
-?>
-
- <?php
-			if (mysqli_num_rows($query) > 0) {
-				while ($row = mysqli_fetch_assoc($query)) {
-			?>
-			<td><?php echo $row['codcit']; ?></td>
-			<td><?php echo $row['dnipa']; ?></td>
-			<td><?php echo $row['nombrep']; ?> &nbsp;<?php echo $row['apellidop']; ?></td>
-
-			<td><?php echo $row['dates']; ?></td>
-			<td><?php echo $row['hour']; ?></td>
-			
-			<td><?php echo $row['nombrees']; ?>&nbsp;<?php echo $row['apedoc']; ?></td>
-			<td><?php echo $row['nombrees']; ?></td>
-			<td>
-						 <?php    if($row['estado']==1)  { ?> 
-						  <form  method="get" action="javascript:activo('<?php echo $row['codcit']; ?>')">
-							<span class="badge badge-success">Atendido</span>
-
-						  </form>
-						<?php  }   else {?> 
-
-						  <form  method="get" action="javascript:inactivo('<?php echo $row['codcit']; ?>')"> 
-							
-							<span class="badge badge-danger">Pendiente</span>
-						  </form>
-						<?php  } ?>                         
-					</td>
-<?php
-				}
-			} else {
-				?>
-				
-				<div class="message">
-					
-					<p class="alert alert-warning">No cuenta con ninguna cita</p>
-				</div>
-			<?php
-			}
-			?>
-			
-	<?php
-} else {
-	header('location:mostrar.php');
-}
-?>
-					
-										</tbody>
-																							
-											
-										</table>
-									</div>
-									
-
-
-								</div>
-							</div>
-
-
-
-
-
-					</div>
-					
-				</div>
-			</div>
-			
-		</div>
-		
-	</div>
+                                                    if (mysqli_num_rows($query) > 0) {
+                                                        while ($row = mysqli_fetch_assoc($query)) {
+                                                            $estado = $row['estado'] == 1 ? 'Atendido' : 'Pendiente';
+                                                            $badgeClass = $row['estado'] == 1 ? 'badge-success' : 'badge-danger';
+                                                            echo "<tr>
+                                                                <td>{$row['codcit']}</td>
+                                                                <td>{$row['dnipa']}</td>
+                                                                <td>{$row['nombrep']} {$row['apellidop']}</td>
+                                                                <td>{$row['dates']}</td>
+                                                                <td>{$row['hour']}</td>
+                                                                <td>{$row['nomdoc']}</td>
+                                                                <td>{$row['nombrees']}</td>
+                                                                <td><span class='badge {$badgeClass}'>{$estado}</span></td>
+                                                            </tr>";
+                                                        }
+                                                    } else {
+                                                        echo "<tr><td colspan='8' class='text-center'>No cuenta con citas registradas</td></tr>";
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	<!--   Core JS Files   -->
 	
 	<script src="../../assets/js/core/jquery.3.2.1.min.js"></script>

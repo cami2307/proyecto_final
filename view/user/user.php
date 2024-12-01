@@ -124,7 +124,7 @@ $id=$_SESSION['id'];
 											<div class="avatar-lg"><img src="../../assets/img/mujer.png" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4><?php echo ucfirst($_SESSION['nombre']); ?></h4>
-												<p class="text-muted">Customers</p>
+												<p class="text-muted">Paciente</p>
 											</div>
 										</div>
 									</li>
@@ -156,7 +156,7 @@ $id=$_SESSION['id'];
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									<?php echo ucfirst($_SESSION['nombre']); ?>
-									<span class="user-level">Customers</span>
+									<span class="user-level">Paciente</span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -203,6 +203,7 @@ $id=$_SESSION['id'];
 										</a>
 									</li>
 									
+									
 								</ul>
 							</div>
 						</li>
@@ -219,7 +220,7 @@ $id=$_SESSION['id'];
 					<div class="page-inner py-5">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white pb-2 fw-bold">Perfil del cliente</h2>
+								<h2 class="text-white pb-2 fw-bold">Perfil del Paciente</h2>
 								
 							</div>
 							
@@ -337,22 +338,22 @@ if($query){
 								<div class="card-body">
 									<div class="user-profile text-center">
 										<div class="name"><?php echo $d->nombrep; ?></div>
-										<div class="job">Cliente</div>
+										<div class="job">Paciente</div>
 										
 										<div class="social-media">
-											<a class="btn btn-info btn-twitter btn-sm btn-link" href="#"> 
-												<span class="btn-label just-icon"><i class="flaticon-twitter"></i> </span>
-											</a>
-											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
-												<span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span> 
-											</a>
-											<a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#"> 
-												<span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span> 
-											</a>
-											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
-												<span class="btn-label just-icon"><i class="flaticon-dribbble"></i> </span> 
-											</a>
-										</div>
+									  <!-- WhatsApp -->
+    <a class="btn btn-success btn-sm btn-link" href="https://wa.me/573103324459" target="_blank" rel="noopener noreferrer"> 
+        <span class="btn-label just-icon"><i class="flaticon-whatsapp"></i></span>
+    </a>
+    <!-- Facebook -->
+    <a class="btn btn-primary btn-sm btn-link" href="https://www.facebook.com/drrenegranados?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"> 
+        <span class="btn-label just-icon"><i class="flaticon-facebook"></i></span>
+    </a>
+    <!-- Instagram -->
+    <a class="btn btn-danger btn-sm btn-link" href="https://www.instagram.com/reneagranados?igsh=djFsdXo1c2V5OWph" target="_blank" rel="noopener noreferrer"> 
+        <span class="btn-label just-icon"><i class="flaticon-instagram"></i></span>
+    </a>
+</div>
 										
 									</div>
 								</div>
