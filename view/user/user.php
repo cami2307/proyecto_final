@@ -369,6 +369,7 @@ if($query){
 		</div>
 		
 	
+	
 		
 		<!-- End Custom template -->
 	</div>

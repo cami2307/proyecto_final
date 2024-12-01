@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="contenedor">
         <div class="img">
-            <img src="assets/img/bg.svg" alt="">
+            <img src="assets/img/bd.svg" alt="">
         </div>
         <div class="contenido-login">
             <form method="POST" role="form">
