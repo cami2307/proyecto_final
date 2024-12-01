@@ -361,7 +361,7 @@
 							<div class="collapse" id="user">
 								<ul class="nav nav-collapse">
 									<li class="active">
-										<a href="usuarios.php">
+										<a href="../folder/usuarios.php">
 											<span class="sub-item">Mostrar</span>
 										</a>
 									</li>
